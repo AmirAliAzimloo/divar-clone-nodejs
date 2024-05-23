@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 
 const SwaggerConfig = require("./src/config/swagger.config");
+const mainRouter = require("./src/app.routes");
 
 dotenv.config();
 
@@ -15,6 +16,9 @@ async function main () {
 
     //* swagger
     SwaggerConfig(app);
+
+    //* ruters
+    app.use(mainRouter);
     
     app.listen(port, () => {
         console.log(`server: http://localhost:${port}`);
